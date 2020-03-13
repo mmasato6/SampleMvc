@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace SampleMvc.Models
 {
     public partial class Person
     {
         public int Id { get; set; }
+        [MaxLength(10,ErrorMessage="名前は10文字以内でお願いします")]
         public string Name { get; set; }
+        [Range(18,100,ErrorMessage ="年齢は18歳から100歳までです")]
         public int Age { get; set; }
     }
 }
