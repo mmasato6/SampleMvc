@@ -57,6 +57,13 @@ namespace SampleMvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                // 2.5.2 Controller内にチェックロジックを入れてみる
+                // (実務的にはControllerにドメインロジックを入れないほうが良いと思うけど)
+                if (person.Age < 20)
+                {
+                    ModelState.AddModelError(nameof(person.Age), "二十歳未満です");
+                    return View(person);
+                }
                 _context.Add(person);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
