@@ -48,7 +48,7 @@ namespace SampleCFModelMVC.Controllers
         // GET: People/Create
         public IActionResult Create()
         {
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name");
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace SampleCFModelMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age,PrefectureId")] Person person)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,PrefectureId,HireDate,IsAttend,Email,Blog,EmployeeNo")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace SampleCFModelMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name", person.PrefectureId);
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
             return View(person);
         }
 
@@ -82,7 +82,7 @@ namespace SampleCFModelMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name", person.PrefectureId);
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
             return View(person);
         }
 
@@ -91,7 +91,7 @@ namespace SampleCFModelMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,PrefectureId")] Person person)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,PrefectureId,HireDate,IsAttend,Email,Blog,EmployeeNo")] Person person)
         {
             if (id != person.Id)
             {
@@ -118,7 +118,7 @@ namespace SampleCFModelMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name", person.PrefectureId);
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
             return View(person);
         }
 
