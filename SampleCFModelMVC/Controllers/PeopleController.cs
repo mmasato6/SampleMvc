@@ -17,6 +17,8 @@ namespace SampleCFModelMVC.Controllers
         public PeopleController(ApplicationDbContext context)
         {
             _context = context;
+            // 都道府県テーブルの初期データ投入
+            Prefecture.Initialize(_context);
         }
 
         // GET: People
@@ -48,7 +50,7 @@ namespace SampleCFModelMVC.Controllers
         // GET: People/Create
         public IActionResult Create()
         {
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id");
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name");
             return View();
         }
 
@@ -65,7 +67,7 @@ namespace SampleCFModelMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name", person.PrefectureId);
             return View(person);
         }
 
@@ -82,7 +84,7 @@ namespace SampleCFModelMVC.Controllers
             {
                 return NotFound();
             }
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name", person.PrefectureId);
             return View(person);
         }
 
@@ -118,7 +120,7 @@ namespace SampleCFModelMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Name", person.PrefectureId);
             return View(person);
         }
 
