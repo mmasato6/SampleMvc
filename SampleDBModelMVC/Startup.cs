@@ -40,6 +40,9 @@ namespace SampleDBModelMVC
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            // 3.1.4 DB接続文字列をappsettings.jsonから読み取るよう変更
+            services.AddDbContext<Models.MvcTestDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DBConnection")));
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
