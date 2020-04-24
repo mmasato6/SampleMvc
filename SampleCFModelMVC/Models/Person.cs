@@ -29,6 +29,7 @@ namespace SampleCFModelMVC.Models
         [Display(Name="入社日")]
         [DisplayFormat(DataFormatString ="{0:yyyy年MM月dd日}")]
         [DataType(DataType.Date)]
+        [ValidHireDate]
         public DateTime? HireDate { get; set; }
 
         //出退勤
