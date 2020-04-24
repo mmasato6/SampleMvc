@@ -16,16 +16,16 @@ namespace SampleDBModelMVC.Models
         }
 
         public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<Prefecture> Prefecture { get; set; }
 
-        // 3.1.4 接続文字列をappsetings.jsonに移動する
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MvcTestDB;Integrated Security=True");
-//            }
-//        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MvcTestDB;Integrated Security=True");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,6 +42,28 @@ namespace SampleDBModelMVC.Models
                     .HasColumnName("name")
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.PrefectureId).HasColumnName("prefecture_id");
+
+                entity.HasOne(d => d.Prefecture)
+                    .WithMany(p => p.Person)
+                    .HasForeignKey(d => d.PrefectureId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_person_prefecture");
+            });
+
+            modelBuilder.Entity<Prefecture>(entity =>
+            {
+                entity.ToTable("prefecture");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasColumnName("name")
+                    .HasMaxLength(10);
             });
         }
     }
