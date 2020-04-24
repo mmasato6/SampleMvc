@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SampleCFModelMVC.Models;
 
 namespace SampleCFModelMVC.Data
 {
@@ -12,5 +13,6 @@ namespace SampleCFModelMVC.Data
             : base(options)
         {
         }
+        public DbSet<SampleCFModelMVC.Models.Person> Person { get; set; }
     }
 }
