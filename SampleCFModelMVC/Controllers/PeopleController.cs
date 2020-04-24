@@ -22,7 +22,8 @@ namespace SampleCFModelMVC.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Person.ToListAsync());
+            var applicationDbContext = _context.Person.Include(p => p.Prefecture);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: People/Details/5
@@ -34,6 +35,7 @@ namespace SampleCFModelMVC.Controllers
             }
 
             var person = await _context.Person
+                .Include(p => p.Prefecture)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (person == null)
             {
@@ -46,6 +48,7 @@ namespace SampleCFModelMVC.Controllers
         // GET: People/Create
         public IActionResult Create()
         {
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SampleCFModelMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Age")] Person person)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age,PrefectureId")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SampleCFModelMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
             return View(person);
         }
 
@@ -78,6 +82,7 @@ namespace SampleCFModelMVC.Controllers
             {
                 return NotFound();
             }
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
             return View(person);
         }
 
@@ -86,7 +91,7 @@ namespace SampleCFModelMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age")] Person person)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,PrefectureId")] Person person)
         {
             if (id != person.Id)
             {
@@ -113,6 +118,7 @@ namespace SampleCFModelMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["PrefectureId"] = new SelectList(_context.Set<Prefecture>(), "Id", "Id", person.PrefectureId);
             return View(person);
         }
 
@@ -125,6 +131,7 @@ namespace SampleCFModelMVC.Controllers
             }
 
             var person = await _context.Person
+                .Include(p => p.Prefecture)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (person == null)
             {
