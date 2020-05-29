@@ -16,6 +16,7 @@ namespace SampleListDetail01.Controllers
         public AuthorsController(ListDetailDbContext context)
         {
             _context = context;
+            Prefecture.Initialize(_context);
         }
 
         // GET: Authors
@@ -47,7 +48,7 @@ namespace SampleListDetail01.Controllers
         // GET: Authors/Create
         public IActionResult Create()
         {
-            ViewData["PrefectureId"] = new SelectList(_context.Prefectures, "Id", "Id");
+            ViewData["PrefectureId"] = new SelectList(_context.Prefectures, "Id","Name");
             return View();
         }
 
