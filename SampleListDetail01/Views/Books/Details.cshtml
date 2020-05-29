@@ -20,13 +20,17 @@
             @Html.DisplayNameFor(model => model.Author.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Author.Name)
+            <a asp-controller="Authors" asp-action="Details" asp-route-id="@Model.AuthorId">
+                @Html.DisplayFor(model => model.Author.Name)
+            </a>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Publisher.Name)
+                @Html.DisplayNameFor(model => model.Publisher.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Publisher.Name)
+            <a asp-controller="Publishers" asp-action="Details" asp-route-id="@Model.PublisherId">
+                @Html.DisplayFor(model => model.Publisher.Name)
+            </a>
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Price)

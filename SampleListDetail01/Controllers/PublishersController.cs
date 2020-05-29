@@ -32,7 +32,7 @@ namespace SampleListDetail01.Controllers
                 return NotFound();
             }
 
-            var publisher = await _context.Publishers
+            var publisher = await _context.Publishers.Include(p => p.Books)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (publisher == null)
             {
