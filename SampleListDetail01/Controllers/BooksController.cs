@@ -26,29 +26,29 @@ namespace SampleListDetail01.Controllers
                 page = 0;
             }
             const int max = 5;
-            var books = from m in _context.Books select m;
+            var books = from b in _context.Books select b;
             // 検索
             if (!string.IsNullOrEmpty(search)) 
             {
                 books = books.Where(b => b.Title.Contains(search));
             }
 
-             //ページング
-            books = books.Skip(max * page.Value).Take(max).Include(b => b.Author).Include(b => b.Publisher); 
-            if(page.Value > 0)
+            // 新着順に表示する
+            books = books.OrderByDescending(b => b.PublishDate).ThenByDescending(b => b.Id);
+
+            //ページング
+            if (page.Value > 0)
             {
                 ViewData["prev"] = page.Value - 1;
             }
-            if (books.Count() >= max)
+            //次のページがあるか確認
+            int currentOffset = max * page.Value;
+            int nextOffset = max * (page.Value + 1);
+            if (books.Skip(nextOffset).Any()) 
             {
                 ViewData["next"] = page.Value + 1;
-                if(_context.Books.Skip(max * (page.Value+1)).Take(max).Count() == 0)
-                {
-                    ViewData["next"] = null;
-                }
             }
-
-            return View(await books.ToListAsync());
+            return View(await books.Skip(currentOffset).Take(max).Include(b => b.Author).Include(b => b.Publisher).ToListAsync());
         }
 
         // GET: Books/Details/5
