@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.960
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleMvc", "SampleMvc\SampleMvc.csproj", "{BF5B55AE-79DD-4A60-B81C-5823BF8E3C4B}"
 EndProject
@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDBModelMVC", "SampleD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleCFModelMVC", "SampleCFModelMVC\SampleCFModelMVC.csproj", "{F9B865F8-E4BB-440D-A965-470ED8E975A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleListDetail01", "SampleListDetail01\SampleListDetail01.csproj", "{0A502E51-8367-44A3-A01F-08E88DF1CAF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleListDetail01", "SampleListDetail01\SampleListDetail01.csproj", "{0A502E51-8367-44A3-A01F-08E88DF1CAF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApi", "SampleWebApi\SampleWebApi.csproj", "{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0A502E51-8367-44A3-A01F-08E88DF1CAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A502E51-8367-44A3-A01F-08E88DF1CAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A502E51-8367-44A3-A01F-08E88DF1CAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
