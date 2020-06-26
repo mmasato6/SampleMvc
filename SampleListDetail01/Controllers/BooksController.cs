@@ -31,6 +31,7 @@ namespace SampleListDetail01.Controllers
             if (!string.IsNullOrEmpty(search)) 
             {
                 books = books.Where(b => b.Title.Contains(search));
+                ViewData["search"] = search;
             }
 
             // 新着順に表示する
