@@ -19,10 +19,29 @@ namespace SampleListDetail01.Controllers
         }
 
         // GET: Books
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            var listDetailDbContext = _context.Books.Include(b => b.Author).Include(b => b.Publisher);
-            return View(await listDetailDbContext.ToListAsync());
+            if(page == null)
+            {
+                page = 0;
+            }
+            const int max = 5;
+            var books = _context.Books.Skip(max * page.Value).Take(max).Include(b => b.Author).Include(b => b.Publisher); 
+
+            if(page.Value > 0)
+            {
+                ViewData["prev"] = page.Value - 1;
+            }
+            if (books.Count() >= max)
+            {
+                ViewData["next"] = page.Value + 1;
+                if(_context.Books.Skip(max * (page.Value+1)).Take(max).Count() == 0)
+                {
+                    ViewData["next"] = null;
+                }
+            }
+
+            return View(await books.ToListAsync());
         }
 
         // GET: Books/Details/5

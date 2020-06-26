@@ -9,6 +9,25 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div>
+    @if (ViewBag.Prev != null)
+    {
+        <a asp-action="Index" asp-route-page="@ViewBag.Prev">prev</a>
+    }
+    else
+    {
+        <span>prev</span>
+    }
+    /
+    @if (ViewBag.Next != null)
+    {
+        <a asp-action="Index" asp-route-page="@ViewBag.Next">next</a>
+    }
+    else
+    {
+        <span>next</span>
+    }
+</div>
 <table class="table">
     <thead>
         <tr>
