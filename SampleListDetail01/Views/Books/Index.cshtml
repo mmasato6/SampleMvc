@@ -12,7 +12,7 @@
 <div>
     @if (ViewBag.Prev != null)
     {
-        <a asp-action="Index" asp-route-page="@ViewBag.Prev">prev</a>
+        <a asp-action="Index" asp-route-page="@ViewBag.Prev" asp-route-search="@ViewBag.Search">prev</a>
     }
     else
     {
@@ -21,13 +21,17 @@
     /
     @if (ViewBag.Next != null)
     {
-        <a asp-action="Index" asp-route-page="@ViewBag.Next">next</a>
+        <a asp-action="Index" asp-route-page="@ViewBag.Next" asp-route-search="@ViewBag.Search">next</a>
     }
     else
     {
         <span>next</span>
     }
 </div>
+<form asp-action="Index" method="get">
+    Title; <input type="search" name="search" value="@ViewBag.Search" />
+    <button type="submit" value="Filter">Filter</button>
+</form>
 <table class="table">
     <thead>
         <tr>

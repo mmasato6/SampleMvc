@@ -19,15 +19,22 @@ namespace SampleListDetail01.Controllers
         }
 
         // GET: Books
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string search)
         {
             if(page == null)
             {
                 page = 0;
             }
             const int max = 5;
-            var books = _context.Books.Skip(max * page.Value).Take(max).Include(b => b.Author).Include(b => b.Publisher); 
+            var books = from m in _context.Books select m;
+            // 検索
+            if (!string.IsNullOrEmpty(search)) 
+            {
+                books = books.Where(b => b.Title.Contains(search));
+            }
 
+             //ページング
+            books = books.Skip(max * page.Value).Take(max).Include(b => b.Author).Include(b => b.Publisher); 
             if(page.Value > 0)
             {
                 ViewData["prev"] = page.Value - 1;
