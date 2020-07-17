@@ -19,20 +19,22 @@ namespace SampleWebApi.Controllers
         public PeopleController(ApplicationDbConttext context)
         {
             _context = context;
+            //初回のみ都道府県を挿入する
+            Prefecture.Initialize(_context);
         }
 
         // GET: api/People
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Person>>> GetPeople()
         {
-            return await _context.People.ToListAsync();
+            return await _context.People.Include(p => p.Prefecture).ToListAsync();
         }
 
         // GET: api/People/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Person>> GetPerson(int id)
         {
-            var person = await _context.People.FindAsync(id);
+            var person = await _context.People.Include(p => p.Prefecture).SingleOrDefaultAsync(p => p.Id == id);
 
             if (person == null)
             {

@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /SampleWebApi/Sample.db
+/SampleWebApi/Sample.db-wal
+/SampleWebApi/Sample.db-shm
