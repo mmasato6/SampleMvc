@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleCFModelMVC", "SampleC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleListDetail01", "SampleListDetail01\SampleListDetail01.csproj", "{0A502E51-8367-44A3-A01F-08E88DF1CAF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWebApi", "SampleWebApi\SampleWebApi.csproj", "{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebApi", "SampleWebApi\SampleWebApi.csproj", "{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiClientWpf1", "ApiClientWpf1\ApiClientWpf1.csproj", "{0359F769-6AED-4431-8A4C-6145D380AA48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{117B6A70-AE95-4C99-819D-8FBF3CF46C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0359F769-6AED-4431-8A4C-6145D380AA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0359F769-6AED-4431-8A4C-6145D380AA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0359F769-6AED-4431-8A4C-6145D380AA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0359F769-6AED-4431-8A4C-6145D380AA48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
