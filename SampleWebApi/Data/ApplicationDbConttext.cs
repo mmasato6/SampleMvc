@@ -19,5 +19,7 @@ namespace SampleWebApi.Data
         }
 
         public DbSet<Person> People { get; set; }
+
+        public DbSet<SampleWebApi.Models.Prefecture> Prefecture { get; set; }
     }
 }
