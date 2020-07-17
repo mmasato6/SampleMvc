@@ -27,7 +27,7 @@ namespace SampleWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbConttext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbConttext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")).UseLoggerFactory(Program.MyLoggerFactory));
             services.AddControllers();
         }
 
