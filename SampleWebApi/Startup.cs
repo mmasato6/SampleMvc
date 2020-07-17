@@ -39,7 +39,8 @@ namespace SampleWebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //ƒTƒ“ƒvƒ‹‚ÌŠÈ•Ö‚Ì‚½‚ßhttps–³Œø‰»
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
