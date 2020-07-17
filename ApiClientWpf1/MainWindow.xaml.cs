@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net.Http;
 
 namespace ApiClientWpf1
 {
@@ -23,6 +24,14 @@ namespace ApiClientWpf1
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private async void btnGet_Click(object sender, RoutedEventArgs e)
+        {
+            var hc = new HttpClient();
+            var res = await hc.GetAsync("http://localhost:5000/api/People");
+            var str = await res.Content.ReadAsStringAsync();
+            textResult.Text = str;
         }
     }
 }
