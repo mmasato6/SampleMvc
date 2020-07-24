@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace ApiClientWpf1
 {
@@ -30,6 +31,17 @@ namespace ApiClientWpf1
         {
             var hc = new HttpClient();
             var res = await hc.GetAsync("http://localhost:5000/api/People");
+            var str = await res.Content.ReadAsStringAsync();
+            textResult.Text = str;
+        }
+
+        private async void btnPost_Click(object sender, RoutedEventArgs e)
+        {
+            var hc = new HttpClient();
+            var data = new Dictionary<string, string> { { "Name", "new person" }, { "EmployeeNo", "ABC-9999" }, { "PrefectureId", "12" }, { "Age", "99" } };
+            var json = JsonConvert.SerializeObject(data);
+            var cont = new StringContent(json, Encoding.UTF8, "application/json");
+            var res = await hc.PostAsync("http://localhost:5000/api/People", cont);
             var str = await res.Content.ReadAsStringAsync();
             textResult.Text = str;
         }
