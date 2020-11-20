@@ -26,6 +26,14 @@ namespace ClientWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbConttext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")).UseLoggerFactory(Program.MyLoggerFactory));
+            services.AddDistributedMemoryCache();
+            //下の方だと動かない？(Httpcontext.get_Sessionした時にInvalidOperationException「Session has not been configured for this application or request.」が起きる
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddControllersWithViews();
         }
 
@@ -42,6 +50,9 @@ namespace ClientWeb
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            //下の方だと動かない？(Httpcontext.get_Sessionした時にInvalidOperationException「Session has not been configured for this application or request.」が起きる
+            app.UseSession(); 
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

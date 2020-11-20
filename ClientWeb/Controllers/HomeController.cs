@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientWeb.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -37,13 +38,15 @@ namespace ClientWeb.Controllers
         public IActionResult First() 
         {
             _date = DateTime.Now.ToString();
+            this.HttpContext.Session.SetString("data", DateTime.Now.ToString());
             ViewData["data"] = _date;
             ViewData["hash"] = GetHashCode().ToString("X");
             return View();
         }
         public IActionResult Second() 
         {
-            ViewData["data"] = _date;
+            //ViewData["data"] = _date; //Controllerはリクエストごとに別インスタンスなのでインスタンス変数の値は消える。
+            ViewData["data"] = HttpContext.Session.GetString("data");
             ViewData["hash"] = GetHashCode().ToString("X");
             return View();
         }
