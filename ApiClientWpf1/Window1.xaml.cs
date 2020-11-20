@@ -93,5 +93,13 @@ namespace ApiClientWpf1
             var str = await res.Content.ReadAsStringAsync();
             MessageBox.Show(str);
         }
+
+        private async void btnDeleteId_Click(object sender, RoutedEventArgs e)
+        {
+            if (textId.Text == null) return;
+            int id = int.Parse(textId.Text);
+            var hc = new HttpClient();
+            _ = await hc.DeleteAsync($"http://localhost:5000/api/People/{id}");
+        }
     }
 }
