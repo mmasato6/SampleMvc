@@ -33,6 +33,22 @@ namespace ClientWeb.Controllers
             return View();
         }
 
+        private string _date = "";
+        public IActionResult First() 
+        {
+            _date = DateTime.Now.ToString();
+            ViewData["data"] = _date;
+            ViewData["hash"] = GetHashCode().ToString("X");
+            return View();
+        }
+        public IActionResult Second() 
+        {
+            ViewData["data"] = _date;
+            ViewData["hash"] = GetHashCode().ToString("X");
+            return View();
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
