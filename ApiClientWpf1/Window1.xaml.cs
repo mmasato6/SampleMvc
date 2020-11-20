@@ -80,5 +80,18 @@ namespace ApiClientWpf1
             var str = await res.Content.ReadAsStringAsync();
             MessageBox.Show(str);   
         }
+
+        private async void btnPutId_Click(object sender, RoutedEventArgs e)
+        {
+            if (textId.Text == "") return;
+            int id = int.Parse(textId.Text);
+            var data = new Person { Id = id, Name = textName.Text, Age = int.Parse(textAge.Text), PrefectureId = (int)comboPrefecture.SelectedValue };
+            var json = JsonConvert.SerializeObject(data);
+            var cont = new StringContent(json, Encoding.UTF8, "application/json");
+            var hc = new HttpClient();
+            var res = await hc.PutAsync($"http://localhost:5000/api/People/{id}", cont);
+            var str = await res.Content.ReadAsStringAsync();
+            MessageBox.Show(str);
+        }
     }
 }
