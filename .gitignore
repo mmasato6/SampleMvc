@@ -262,3 +262,6 @@ __pycache__/
 /SampleWebApi/Sample.db
 /SampleWebApi/Sample.db-wal
 /SampleWebApi/Sample.db-shm
+/ClientWeb/Sample.db
+/ClientWeb/Sample.db-shm
+/ClientWeb/Sample.db-wal
