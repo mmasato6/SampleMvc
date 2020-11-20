@@ -11,4 +11,24 @@
 <p>
     <input id="btnGetID" type="button" value="GetID" />
 </p>
-<div id="message">Response message.</div>
+<div id="msg">Response message.</div>
+@section scripts
+{
+    <script>
+        $(function () {
+            $('#btnGet').click(function () {
+                $.ajax("/api/People")
+                    .then(function (res) {
+                        var msg = "";
+                        for (var i = 0; i < res.length; i++) {
+                            msg += res[i].name + " " + res[i].age + " " + res[i].prefecture.name + "<br/>";
+                        }
+                        $("#msg").html(msg);
+                    })
+                    .fail(function () {
+                        $("#msg").text("error");
+                    });
+            });
+        });
+    </script>
+}
