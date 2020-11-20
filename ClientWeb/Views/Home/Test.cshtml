@@ -30,5 +30,17 @@
                     });
             });
         });
+        $(function () {
+            $('#btnGetID').click(function () {
+                $.ajax("/api/People/3")
+                    .then(function (res) {
+                        $("#msg").text(res.name + " " + res.age);
+                    })
+                    .fail(function () {
+                        $("#msg").text("error");
+                    });
+            });
+        });
+
     </script>
 }
