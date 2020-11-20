@@ -33,5 +33,11 @@ namespace SampleIdentity.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [ActionName("User")]
+        public IActionResult UserPage() 
+        {
+            return View();
+        }
     }
 }
